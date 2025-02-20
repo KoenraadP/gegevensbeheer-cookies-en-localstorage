@@ -34,6 +34,7 @@ form.addEventListener("submit", function(e){
             // een cookie bestaat altijd uit een key en een value
             // bijvoorbeeld: user=Koenraad
             document.cookie = "loggedIn=true;expires=" + ExpirationDate(30);
+            document.cookie = "user=" + userInput.value + ";expires=" + ExpirationDate(30);
             // doorgaan naar pagina success.html
             // alternatieven: location.assign(), location.href =, ...
             // window.open("success.html");
