@@ -33,7 +33,7 @@ form.addEventListener("submit", function(e){
             // opslaan via cookies dat de login gelukt is
             // een cookie bestaat altijd uit een key en een value
             // bijvoorbeeld: user=Koenraad
-            document.cookie = "loggedIn=true";
+            document.cookie = "loggedIn=true;expires=" + ExpirationDate(30);
             // doorgaan naar pagina success.html
             // alternatieven: location.assign(), location.href =, ...
             // window.open("success.html");
@@ -71,4 +71,18 @@ function GetCookie(cookieName) {
     return cookieValue;
 }
 
-console.log(GetCookie("school"));
+// GetCookie function testen
+// console.log(GetCookie("school"));
+
+// function die een datum returnt 
+// x aantal dagen vanaf nu via parameter
+function ExpirationDate(days) {
+    // starten op vandaag
+    let expirationDate = new Date();
+    // datum vandaag + days instellen als nieuwe datum
+    expirationDate.setDate(expirationDate.getDate() + days);
+    return expirationDate;
+}
+
+// ExpirationDate function testen
+console.log(ExpirationDate(30));
