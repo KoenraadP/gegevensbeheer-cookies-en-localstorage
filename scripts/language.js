@@ -6,6 +6,16 @@ const greetingPar = document.getElementById("greeting");
 // alle links verzamelen
 const languageLinks = document.querySelectorAll(".language-link");
 
+// button koppelen
+const clearBtn = document.getElementById("clear");
+
+// controleren welke taal eventueel opgeslagen werd
+// de key die we gekozen hebben is "language" --> let op altijd string
+const chosenLanguage = localStorage.getItem("language");
+
+// function uitvoeren om taal in te stellen
+greetingPar.textContent = ChangeLanguage(chosenLanguage);
+
 // click event koppelen aan alle links
 languageLinks.forEach(element => {
     element.addEventListener("click", function (e) {
@@ -13,10 +23,22 @@ languageLinks.forEach(element => {
         e.preventDefault();
         // gekozen taal --> nl/fr/en
         const chosenLanguage = element.id;
+        // gekozen taal in localStorage opslaan
+        localStorage.setItem("language",chosenLanguage);
         // greeting aanpassen met function
         greetingPar.textContent = ChangeLanguage(chosenLanguage);
     })
 });
+
+// als ik klik op de clear knop
+// wil ik de gekozen taal weer wissen uit localStorage
+clearBtn.addEventListener("click",function(){
+    // language element verwijderen uit ls
+    localStorage.removeItem("language");
+    // alternatief is localStorage.clear() maar dan worden alle keys gewist
+    // pagina herladen
+    location.reload();
+})
 
 // function die als parameter een taal krijgt (nl/fr/en)
 // en op basis daarvan als return de begroeting
